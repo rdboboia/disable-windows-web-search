@@ -1,3 +1,6 @@
+:: Disable verbose commands
+@echo off
+
 :: Disables windows start menu web search which can improve performance and precision
 
 :: Sets the title of the window
@@ -5,6 +8,14 @@ title Disable windows web search
 
 :: Disables sticky keys (might affect multiple settings)
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f
+
+if %errorlevel% == 1 (
+	echo This script needs admin priviledges!
+	echo No action was executed.
+	echo Please start script as admin.
+	pause > nul
+	exit
+)
 
 :: Restart to make changes effective
 echo Some settings need a restart to be applied.
