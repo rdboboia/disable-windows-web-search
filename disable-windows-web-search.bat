@@ -6,5 +6,9 @@ title Disable windows web search
 :: Disables sticky keys (might affect multiple settings)
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f
 
-:: Sets the restart required flag
-set restartRequired=1
+:: Restart to make changes effective
+echo Some settings need a restart to be applied.
+echo Close this window to restart manually later.
+echo Press any key to schedule a restart now.
+pause > nul
+shutdown /R /T 5 /C "Scheduled restart to apply changes (restart in 5 seconds)"
